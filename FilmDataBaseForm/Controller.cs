@@ -2,7 +2,7 @@
 using System;
 using System.Windows.Forms;
 using Views.MainView;
-using Models;
+//using Models;
 
 #region Интерфейсы прецедентов
 namespace Precedents.MainPresenter
@@ -34,7 +34,7 @@ namespace FilmDataBaseForm
 		//которые будут доступны методам класса Controller
 		//Будьте внимательны при использовании их в Асинхронном или много-поточном выполнении!!!
 
-		private readonly ISomeModel sm = new SomeModel();
+		//private readonly ISomeModel sm = new SomeModel();
 
 		// -------------------------------------------------------------
 		#endregion
