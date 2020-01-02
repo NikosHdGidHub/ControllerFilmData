@@ -2,15 +2,15 @@
 
 namespace FilmDataBaseForm.Models.Entities
 {
-	struct ViewedStatus
+	public struct ViewedStatus
 	{
 		public string NameStatus { get; set; }
 	}
-	internal struct Rate
+	public struct Rate
 	{
 		public string NameRate { get; set; }
 	}
-	internal class Film : IFilm
+	public class Film : IFilm
 	{
 		/// <summary>
 		/// Название фильма

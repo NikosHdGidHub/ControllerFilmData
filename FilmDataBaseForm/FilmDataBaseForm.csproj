@@ -54,8 +54,6 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entities\Film.cs" />
-    <Compile Include="Models\Entities\IFilm.cs" />
     <Compile Include="Precedents\MainPrecedent.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilmDataBaseForm", "FilmDataBaseForm\FilmDataBaseForm.csproj", "{B03BC6DA-B2D1-407C-A79D-5F8A1B8E5BDF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "File_MessageLib", "..\..\..\Libs\LibFramework\HelpLib\File_MessageLib\File_MessageLib.csproj", "{04A83209-AD9B-42E8-925E-600ECE1687F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilmDataBaseForm.Models", "FilmDataBaseForm.Models\FilmDataBaseForm.Models.csproj", "{577B812C-E4D4-4CE4-A220-029503964147}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{B03BC6DA-B2D1-407C-A79D-5F8A1B8E5BDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B03BC6DA-B2D1-407C-A79D-5F8A1B8E5BDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B03BC6DA-B2D1-407C-A79D-5F8A1B8E5BDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04A83209-AD9B-42E8-925E-600ECE1687F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04A83209-AD9B-42E8-925E-600ECE1687F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04A83209-AD9B-42E8-925E-600ECE1687F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04A83209-AD9B-42E8-925E-600ECE1687F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{577B812C-E4D4-4CE4-A220-029503964147}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{577B812C-E4D4-4CE4-A220-029503964147}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{577B812C-E4D4-4CE4-A220-029503964147}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{577B812C-E4D4-4CE4-A220-029503964147}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
