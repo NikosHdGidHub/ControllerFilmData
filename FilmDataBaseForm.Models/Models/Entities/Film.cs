@@ -1,25 +1,53 @@
-﻿using System.Collections.Generic;
-using System;
+﻿using System;
+using System.Collections.Generic;
 
 namespace FilmDataBaseForm.Models.Entities
 {
 	[Serializable]
 	public struct ViewedStatus
 	{
-		public string NameStatus { get; set; }
+		public string NameStatus { get; private set; }
+		public void SetStatus(string s)
+		{
+			NameStatus = s;
+		}
 	}
 	[Serializable]
 	public struct Rate
 	{
-		public string NameRate { get; set; }
+		public string NameRate { get; private set; }
+		public void SetNameRate(string s)
+		{
+			NameRate = s;
+		}
 	}
 	[Serializable]
 	public class Film : IFilm
 	{
+		private const string DEFAULT_NAME = "Новый фильм";
+
+		private string _name;
+
+		#region IFilm
+
 		/// <summary>
 		/// Название фильма
 		/// </summary>
-		public string Name { get; set; }
+		public string Name
+		{
+			get => _name;
+			set
+			{
+				if (value == null)
+				{
+					_name = DEFAULT_NAME;
+				}
+				else
+				{
+					_name = value;
+				}
+			}
+		}
 		/// <summary>
 		/// Ссылка на скачивание
 		/// </summary>
@@ -31,11 +59,11 @@ namespace FilmDataBaseForm.Models.Entities
 		/// <summary>
 		/// Если много частей (серий), то хранит ссылки эти на серии.
 		/// </summary>
-		public List<string> ViewedPartsUrl { get; set; }
+		public List<string> ViewedPartsUrl { get; } = new List<string>();
 		/// <summary>
 		/// Оценка фильма
 		/// </summary>
-		public Rate Rate { get; set; }
+		public Rate Rate { get; }
 		/// <summary>
 		/// Ссылка к картинке
 		/// </summary>
@@ -43,6 +71,7 @@ namespace FilmDataBaseForm.Models.Entities
 		/// <summary>
 		/// Статус просмотра фильма
 		/// </summary>
-		public ViewedStatus ViewedStatus { get; set; }
+		public ViewedStatus ViewedStatus { get; }
+		#endregion
 	}
 }

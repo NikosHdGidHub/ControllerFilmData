@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using FilmDataBaseForm.Models.Entities;
+using System.Collections.Generic;
 
-namespace FilmDataBaseForm.Models.Entities
+namespace FilmDataBaseForm.Models
 {
 	public interface IFilm
 	{
@@ -19,11 +20,11 @@ namespace FilmDataBaseForm.Models.Entities
 		/// <summary>
 		/// Если много частей (серий), то хранит ссылки эти на серии.
 		/// </summary>
-		List<string> ViewedPartsUrl { get; set; }
+		List<string> ViewedPartsUrl { get; }
 		/// <summary>
 		/// Оценка фильма
 		/// </summary>
-		Rate Rate { get; set; }
+		Rate Rate { get; }
 		/// <summary>
 		/// Ссылка к картинке
 		/// </summary>
@@ -31,6 +32,6 @@ namespace FilmDataBaseForm.Models.Entities
 		/// <summary>
 		/// Статус просмотра фильма
 		/// </summary>
-		ViewedStatus ViewedStatus { get; set; }
+		ViewedStatus ViewedStatus { get; }
 	}
 }
