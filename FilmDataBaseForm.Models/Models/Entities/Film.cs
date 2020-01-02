@@ -1,15 +1,19 @@
 ﻿using System.Collections.Generic;
+using System;
 
 namespace FilmDataBaseForm.Models.Entities
 {
+	[Serializable]
 	public struct ViewedStatus
 	{
 		public string NameStatus { get; set; }
 	}
+	[Serializable]
 	public struct Rate
 	{
 		public string NameRate { get; set; }
 	}
+	[Serializable]
 	public class Film : IFilm
 	{
 		/// <summary>

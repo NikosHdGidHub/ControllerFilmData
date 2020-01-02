@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "File_MessageLib", "..\..\..
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilmDataBaseForm.Models", "FilmDataBaseForm.Models\FilmDataBaseForm.Models.csproj", "{577B812C-E4D4-4CE4-A220-029503964147}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilmDataBaseForm.ModelsTests", "FilmDataBaseForm.ModelsTests\FilmDataBaseForm.ModelsTests.csproj", "{CA99E6B1-090E-4424-8783-E60FFC7FC7DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{577B812C-E4D4-4CE4-A220-029503964147}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{577B812C-E4D4-4CE4-A220-029503964147}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{577B812C-E4D4-4CE4-A220-029503964147}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA99E6B1-090E-4424-8783-E60FFC7FC7DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA99E6B1-090E-4424-8783-E60FFC7FC7DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA99E6B1-090E-4424-8783-E60FFC7FC7DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA99E6B1-090E-4424-8783-E60FFC7FC7DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -13,11 +13,10 @@ namespace FilmDataBaseForm.Models
 
 		public int Count => _films.Count;
 		public IFilm CurrentFilm { get; private set; }
-		public FilmModel(Func<List<object>> getFilms)
+		public FilmModel(Func<object> getFilms)
 		{
 			//Load
-			LoadFilms(getFilms);
-			
+			LoadFilms(getFilms);			
 		}
 
 		private void LoadFilms(Func<object> getFilms)
@@ -46,9 +45,13 @@ namespace FilmDataBaseForm.Models
 			CurrentFilm = _films.ElementAt(index);
 		}
 		
+		public void SaveFilms(Action<object> setFilm)
+		{
+			setFilm(_films);
+		}
 		public void AddFilm()
 		{
-			IFilm film = new Film { Name = "Новый фильм " + Count};
+			IFilm film = new Film { Name = "Новый фильм " + (Count+1)};
 			_films.Add(film);
 			SetCurrentFulm(Count - 1);
 		}
