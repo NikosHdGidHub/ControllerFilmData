@@ -3,24 +3,8 @@ using System.Collections.Generic;
 
 namespace FilmDataBaseForm.Models.Entities
 {
-	[Serializable]
-	public struct ViewedStatus
-	{
-		public string NameStatus { get; private set; }
-		public void SetStatus(string s)
-		{
-			NameStatus = s;
-		}
-	}
-	[Serializable]
-	public struct Rate
-	{
-		public string NameRate { get; private set; }
-		public void SetNameRate(string s)
-		{
-			NameRate = s;
-		}
-	}
+	
+	
 	[Serializable]
 	public class Film : IFilm
 	{
@@ -63,7 +47,7 @@ namespace FilmDataBaseForm.Models.Entities
 		/// <summary>
 		/// Оценка фильма
 		/// </summary>
-		public Rate Rate { get; }
+		public byte Rate { get; set; }
 		/// <summary>
 		/// Ссылка к картинке
 		/// </summary>
@@ -71,7 +55,7 @@ namespace FilmDataBaseForm.Models.Entities
 		/// <summary>
 		/// Статус просмотра фильма
 		/// </summary>
-		public ViewedStatus ViewedStatus { get; }
+		public byte ViewedStatus { get; set; }
 		#endregion
 	}
 }

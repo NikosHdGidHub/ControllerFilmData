@@ -24,7 +24,7 @@ namespace FilmDataBaseForm.Models
 		/// <summary>
 		/// Оценка фильма
 		/// </summary>
-		Rate Rate { get; }
+		byte Rate { get; set; }
 		/// <summary>
 		/// Ссылка к картинке
 		/// </summary>
@@ -32,6 +32,6 @@ namespace FilmDataBaseForm.Models
 		/// <summary>
 		/// Статус просмотра фильма
 		/// </summary>
-		ViewedStatus ViewedStatus { get; }
+		byte ViewedStatus { get; set; }
 	}
 }

@@ -45,6 +45,7 @@
     <Compile Include="Models\Entities\IFilm.cs" />
     <Compile Include="Models\FilmModel.cs" />
     <Compile Include="Models\ICurrentFilm.cs" />
+    <Compile Include="Models\IFilmModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

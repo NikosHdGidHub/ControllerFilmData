@@ -5,9 +5,14 @@ using System.Linq;
 
 namespace FilmDataBaseForm.Models
 {
-
-	public class FilmModel : ICurrentFilm
+	public class FilmModel : ICurrentFilm, IFilmModel
 	{
+		public static IFilmModel GetModel(Func<object> getFilms)
+		{
+			return new FilmModel(getFilms);
+		}
+
+
 		/// <summary>
 		/// Список фильмов
 		/// </summary>
@@ -44,7 +49,7 @@ namespace FilmDataBaseForm.Models
 			Index = index;
 		}
 
-		public FilmModel(Func<object> getFilms)
+		private FilmModel(Func<object> getFilms)
 		{
 			//Load
 			LoadFilms(getFilms);
@@ -57,11 +62,10 @@ namespace FilmDataBaseForm.Models
 				return this;
 			}
 		}
-		
+
 
 		public int Count => _films.Count;
 		public int Index { get; private set; }
-
 
 		public void SaveFilms(Action<object> setFilm)
 		{
@@ -79,21 +83,26 @@ namespace FilmDataBaseForm.Models
 		}
 
 
+		//TODO: Проверить входящие данные
 		#region ICurrentFilm
 		string ICurrentFilm.Name { get => _currentFilm.Name; set => _currentFilm.Name = value; }
 		string ICurrentFilm.Url { get => _currentFilm.Url; set => _currentFilm.Url = value; }
 		string ICurrentFilm.Comment { get => _currentFilm.Comment; set => _currentFilm.Comment = value; }
 		List<string> ICurrentFilm.ViewedPartsUrl => _currentFilm.ViewedPartsUrl;
+		//TODO: Реализовать обработчик Rate
 		string ICurrentFilm.Rate
 		{
-			get => _currentFilm.Rate.NameRate;
-			set => _currentFilm.Rate.SetNameRate(value);
+			get => throw new NotImplementedException();
+			set => throw new NotImplementedException();
+		//TODO: Реализовать обработчик статуса
 		}
 		string ICurrentFilm.ImageUrl { get => _currentFilm.ImageUrl; set => _currentFilm.ImageUrl = value; }
+		//TODO: Реализовать обработчик статуса
 		string ICurrentFilm.ViewedStatus
 		{
-			get => _currentFilm.ViewedStatus.NameStatus;
-			set => _currentFilm.ViewedStatus.SetStatus(value);
+			
+			get => throw new NotImplementedException();
+			set => throw new NotImplementedException();
 		}
 		#endregion
 	}

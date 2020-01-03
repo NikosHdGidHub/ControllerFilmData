@@ -26,24 +26,24 @@ namespace FilmDataBaseForm.Models.Tests
 		public void LoadFilmsTest()
 		{
 			fM.Create(path);
-			var filmModel = new FilmModel(Load);
+			var filmModel = FilmModel.GetModel(Load);
 			Assert.AreEqual(1, filmModel.Count);
 		}
 		[TestMethod()]
 		public void Save_AddFilmsTest()
 		{
 			fM.Create(path);
-			var filmModel = new FilmModel(Load);
+			var filmModel = FilmModel.GetModel(Load);
 			filmModel.AddFilm();
 			filmModel.SaveFilms(Save);
-			var filmModel2 = new FilmModel(Load);
+			var filmModel2 = FilmModel.GetModel(Load);
 			Assert.AreEqual(2, filmModel2.Count);
 		}
 		[TestMethod()]
 		public void IndexatorFilmsTest()
 		{
 			fM.Create(path);
-			var filmModel = new FilmModel(Load);
+			var filmModel = FilmModel.GetModel(Load);
 			var film = filmModel.GetFilm();
 			film.Name = "AAAAAAAAAAA";
 			Assert.AreEqual(film.Name, filmModel[0].Name);

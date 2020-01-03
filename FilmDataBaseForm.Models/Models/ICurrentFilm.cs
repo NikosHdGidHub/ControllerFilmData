@@ -2,6 +2,7 @@
 
 namespace FilmDataBaseForm.Models
 {
+	//TODO: За комментировать интерфейс
 	public interface ICurrentFilm
 	{
 		string Comment { get; set; }
