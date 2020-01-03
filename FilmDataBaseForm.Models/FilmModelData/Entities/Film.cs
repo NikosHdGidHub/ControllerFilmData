@@ -8,30 +8,15 @@ namespace FilmDataBaseForm.Models.Entities
 	[Serializable]
 	public class Film : IFilm
 	{
-		private const string DEFAULT_NAME = "Новый фильм";
 
-		private string _name;
 
 		#region IFilm
 
 		/// <summary>
 		/// Название фильма
 		/// </summary>
-		public string Name
-		{
-			get => _name;
-			set
-			{
-				if (value == null)
-				{
-					_name = DEFAULT_NAME;
-				}
-				else
-				{
-					_name = value;
-				}
-			}
-		}
+		public string Name { get; set; }
+		
 		/// <summary>
 		/// Ссылка на скачивание
 		/// </summary>

@@ -12,5 +12,8 @@ namespace FilmDataBaseForm.Models
 		string Url { get; set; }
 		List<string> ViewedPartsUrl { get; }
 		string ViewedStatus { get; set; }
+
+		string GetShortNameFilm();
+		string GetShortNameFilm(int len);
 	}
 }

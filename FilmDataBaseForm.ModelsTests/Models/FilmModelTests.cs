@@ -22,18 +22,23 @@ namespace FilmDataBaseForm.Models.Tests
 		{
 			fM.SaveBinaryFormatter(obj);
 		}
-		[TestMethod()]
-		public void LoadFilmsTest()
+		private IFilmModel GetFilmModel()
 		{
 			fM.Create(path);
-			var filmModel = FilmModel.GetModel(Load);
+			return FilmModel.GetModel(Load);
+		}
+
+		[TestMethod()]
+		public void LoadIndexFilmsTest()
+		{
+			var filmModel = GetFilmModel();
 			Assert.AreEqual(1, filmModel.Count);
+			Assert.AreEqual(0, filmModel.Index);
 		}
 		[TestMethod()]
 		public void Save_AddFilmsTest()
 		{
-			fM.Create(path);
-			var filmModel = FilmModel.GetModel(Load);
+			var filmModel = GetFilmModel();
 			filmModel.AddFilm();
 			filmModel.SaveFilms(Save);
 			var filmModel2 = FilmModel.GetModel(Load);
@@ -42,12 +47,38 @@ namespace FilmDataBaseForm.Models.Tests
 		[TestMethod()]
 		public void IndexatorFilmsTest()
 		{
-			fM.Create(path);
-			var filmModel = FilmModel.GetModel(Load);
+			var filmModel = GetFilmModel();
 			var film = filmModel.GetFilm();
 			film.Name = "AAAAAAAAAAA";
 			Assert.AreEqual(film.Name, filmModel[0].Name);
 		}
 
+		[TestMethod()]
+		public void GetSetNameFilmTest()
+		{
+			var testName = Guid.NewGuid().ToString();
+			var testName2 = "ASDSDASDD";
+
+			var filmModel = GetFilmModel();
+			var filmModel2 = FilmModel.GetModel(Load);
+
+			filmModel.GetFilm().Name = testName;
+			filmModel2.GetFilm().Name = testName2;
+
+			Assert.AreEqual(testName, filmModel.GetFilm().Name);
+			Assert.AreEqual("...", filmModel.GetFilm().GetShortNameFilm(3));
+
+
+			Assert.AreEqual(testName2, filmModel2.GetFilm().GetShortNameFilm());
+			Assert.AreEqual(testName2, filmModel2.GetFilm().Name);
+		}
+
+		[TestMethod()]
+		public void IsNameValidTest()
+		{
+			var filmModel = GetFilmModel();
+			Assert.IsTrue(filmModel.IsNameValid("123"));
+			Assert.IsFalse(filmModel.IsNameValid(null));
+		}
 	}
 }
