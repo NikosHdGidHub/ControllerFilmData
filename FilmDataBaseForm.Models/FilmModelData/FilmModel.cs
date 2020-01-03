@@ -1,4 +1,5 @@
 ﻿using FilmDataBaseForm.Models.Entities;
+using FilmDataBaseForm.Models.FilmModelData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,16 @@ namespace FilmDataBaseForm.Models
 {
 	public class FilmModel : ICurrentFilm, IFilmModel
 	{
+		private readonly string[] RATE_LIST_DATA = new[]
+		{
+			Messages.Rate1,
+			Messages.Rate2,
+			Messages.Rate3,
+			Messages.Rate4,
+			Messages.Rate5,
+			Messages.Rate6,
+		};
+
 		/// <summary>
 		/// Возвращает экземпляр класса FilmModel через интерфейс IFilmModel.
 		/// </summary>
@@ -61,24 +72,55 @@ namespace FilmDataBaseForm.Models
 			_currentFilm = _films.ElementAt(index);
 			Index = index;
 		}
-		
+		private void SetRate(string strRate)
+		{
+			if (!IsValidRate(strRate, out bool? isIndex)) throw new FormatException();
 
+			if (isIndex == true) _currentFilm.Rate = byte.Parse(strRate);
+			else
+			{
+				_currentFilm.Rate = Convert.ToByte(Array.IndexOf(RATE_LIST_DATA, strRate));
+			}
+		}
+
+
+		//TODO: Реализовать отдачу списка фильмов возможно в виде структуры с ID для возможности сортировки
 		#region IFilmModel
 		public bool IsNameValid(string nameFilm)
 		{
 			if (string.IsNullOrWhiteSpace(nameFilm))
 			{
-				WarningMessageProp?.Invoke(this, FilmModelData.Messages.NameFilmIsNull, nameof(nameFilm));
+				WarningMessageProp?.Invoke(this, Messages.NameFilmIsNull, nameof(nameFilm));
 				return false;
 			}
-			if (nameFilm.Length > Convert.ToInt32(FilmModelData.Constants.MaxSetLengthNameFilm))
+			if (nameFilm.Length > Convert.ToInt32(Constants.MaxSetLengthNameFilm))
 			{
-				WarningMessageProp?.Invoke(this, FilmModelData.Messages.NameFilmIsLong, nameof(nameFilm));
+				WarningMessageProp?.Invoke(this, Messages.NameFilmIsLong, nameof(nameFilm));
 				return false;
 			}
 			return true;
 		}
-		
+		public bool IsValidRate(string strRate, out bool? resultIsIndexInList)
+		{
+			resultIsIndexInList = null;
+			if (RATE_LIST_DATA.SingleOrDefault(item => item == strRate) != default)
+			{
+				resultIsIndexInList = false;
+				return true;
+			}
+			if (byte.TryParse(strRate, out byte result))
+			{
+				if (result >= 0 && result < 6)
+				{
+					resultIsIndexInList = true;
+					return true;
+				}
+			}			
+			WarningMessageProp?.Invoke(this, Messages.RateFilmIsNotCorrect, nameof(strRate));
+			return false;
+		}
+
+
 		public ICurrentFilm this[int index]
 		{
 			get
@@ -125,8 +167,14 @@ namespace FilmDataBaseForm.Models
 			}
 			return result;
 		}
+		int ICurrentFilm.GetRateIndex()
+		{
+			return _currentFilm.Rate;
+		}
+		
+		
 
-		string ICurrentFilm.Name 
+		string ICurrentFilm.Name
 		{
 			get => _currentFilm.Name;
 			set
@@ -141,17 +189,16 @@ namespace FilmDataBaseForm.Models
 		string ICurrentFilm.Url { get => _currentFilm.Url; set => _currentFilm.Url = value; }
 		string ICurrentFilm.Comment { get => _currentFilm.Comment; set => _currentFilm.Comment = value; }
 		List<string> ICurrentFilm.ViewedPartsUrl => _currentFilm.ViewedPartsUrl;
-		//TODO: Реализовать обработчик Rate
 		string ICurrentFilm.Rate
 		{
-			get => throw new NotImplementedException();
-			set => throw new NotImplementedException();
+			get => RATE_LIST_DATA[_currentFilm.Rate];
+			set => SetRate(value);
 		}
 		string ICurrentFilm.ImageUrl { get => _currentFilm.ImageUrl; set => _currentFilm.ImageUrl = value; }
 		//TODO: Реализовать обработчик статуса
 		string ICurrentFilm.ViewedStatus
 		{
-			
+
 			get => throw new NotImplementedException();
 			set => throw new NotImplementedException();
 		}

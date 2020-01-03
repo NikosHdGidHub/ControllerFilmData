@@ -1,19 +1,15 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FilmDataBaseForm.Models;
+﻿using Lib.StreamDataController;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using FilmDataBaseForm.Models.FilmModelData;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Lib.StreamDataController;
 
 namespace FilmDataBaseForm.Models.Tests
 {
 	[TestClass()]
 	public class FilmModelTests
 	{
-		private IStreamDataController<string> fM = new FileController();
-		private string path = "TestSer.dat";
+		private readonly IStreamDataController<string> fM = new FileController();
+		private readonly string path = "TestSer.dat";
 		private object Load()
 		{
 			return fM.LoadBinaryFormatter();
@@ -79,6 +75,35 @@ namespace FilmDataBaseForm.Models.Tests
 			var filmModel = GetFilmModel();
 			Assert.IsTrue(filmModel.IsNameValid("123"));
 			Assert.IsFalse(filmModel.IsNameValid(null));
+		}
+
+		[TestMethod()]
+		public void ValidRateTest()
+		{
+			var filmModel = GetFilmModel();
+			bool? out1 = null;
+			var res1 = filmModel.IsValidRate("0", out out1);
+			Assert.IsTrue(res1 && out1 == true);
+			res1 = filmModel.IsValidRate("blabla", out out1); 
+			Assert.IsTrue(!res1 && out1 == null);
+			res1 = filmModel.IsValidRate("6", out out1);
+			Assert.IsTrue(!res1 && out1 == null); 
+			res1 = filmModel.IsValidRate("Один из лучших самых фильмов...", out out1);
+			Assert.IsTrue(res1 && out1 == false);
+		}
+		[TestMethod()]
+		public void SetGetRateTest()
+		{
+			var filmModel = GetFilmModel();
+			var strRate_6 = "Один из лучших самых фильмов...";
+			var film = filmModel.GetFilm();
+			film.Rate = strRate_6;
+
+			Assert.AreEqual(strRate_6, film.Rate);
+			Assert.AreEqual(5, film.GetRateIndex());
+
+			film.Rate = "0";
+			Assert.AreEqual(0, film.GetRateIndex());
 		}
 	}
 }

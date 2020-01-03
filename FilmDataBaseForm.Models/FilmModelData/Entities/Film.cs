@@ -8,8 +8,6 @@ namespace FilmDataBaseForm.Models.Entities
 	[Serializable]
 	public class Film : IFilm
 	{
-
-
 		#region IFilm
 
 		/// <summary>

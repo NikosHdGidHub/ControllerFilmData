@@ -123,4 +123,25 @@
   <data name="NameFilmIsNull" xml:space="preserve">
     <value>Название фильма не может быть пустым</value>
   </data>
+  <data name="Rate1" xml:space="preserve">
+    <value>Отвратительный фильм</value>
+  </data>
+  <data name="Rate2" xml:space="preserve">
+    <value>Плохой, неитересный фильм</value>
+  </data>
+  <data name="Rate3" xml:space="preserve">
+    <value>Средний, возможно потом повторно посмотрю</value>
+  </data>
+  <data name="Rate4" xml:space="preserve">
+    <value>Фильм местами заинтересовал, потрогал за душу</value>
+  </data>
+  <data name="Rate5" xml:space="preserve">
+    <value>Отличный фильм, много интересных моментов, обязательно когданибудь посмотрю ещё раз</value>
+  </data>
+  <data name="Rate6" xml:space="preserve">
+    <value>Один из лучших самых фильмов...</value>
+  </data>
+  <data name="RateFilmIsNotCorrect" xml:space="preserve">
+    <value>Неверно получены данные о рейтенге фильма</value>
+  </data>
 </root>

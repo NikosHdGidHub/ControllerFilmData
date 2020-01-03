@@ -77,5 +77,68 @@ namespace FilmDataBaseForm.Models.FilmModelData {
                 return ResourceManager.GetString("NameFilmIsNull", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Отвратительный фильм.
+        /// </summary>
+        internal static string Rate1 {
+            get {
+                return ResourceManager.GetString("Rate1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Плохой, неитересный фильм.
+        /// </summary>
+        internal static string Rate2 {
+            get {
+                return ResourceManager.GetString("Rate2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Средний, возможно потом повторно посмотрю.
+        /// </summary>
+        internal static string Rate3 {
+            get {
+                return ResourceManager.GetString("Rate3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Фильм местами заинтересовал, потрогал за душу.
+        /// </summary>
+        internal static string Rate4 {
+            get {
+                return ResourceManager.GetString("Rate4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Отличный фильм, много интересных моментов, обязательно когданибудь посмотрю ещё раз.
+        /// </summary>
+        internal static string Rate5 {
+            get {
+                return ResourceManager.GetString("Rate5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Один из лучших самых фильмов....
+        /// </summary>
+        internal static string Rate6 {
+            get {
+                return ResourceManager.GetString("Rate6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Неверно получены данные о рейтенге фильма.
+        /// </summary>
+        internal static string RateFilmIsNotCorrect {
+            get {
+                return ResourceManager.GetString("RateFilmIsNotCorrect", resourceCulture);
+            }
+        }
     }
 }
