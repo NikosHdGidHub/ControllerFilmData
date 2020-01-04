@@ -55,7 +55,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Libs\LibFramework\HelpLib\File_MessageLib\File_MessageLib.csproj">
+    <ProjectReference Include="..\..\..\..\Libs\LibFramework\Lib\File_MessageLib\File_MessageLib.csproj">
       <Project>{04a83209-ad9b-42e8-925e-600ece1687f7}</Project>
       <Name>File_MessageLib</Name>
     </ProjectReference>

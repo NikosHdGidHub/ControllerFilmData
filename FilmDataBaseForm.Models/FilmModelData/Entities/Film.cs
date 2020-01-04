@@ -1,25 +1,20 @@
-﻿using System.Collections.Generic;
-using System;
+﻿using System;
+using System.Collections.Generic;
 
 namespace FilmDataBaseForm.Models.Entities
 {
-	[Serializable]
-	public struct ViewedStatus
-	{
-		public string NameStatus { get; set; }
-	}
-	[Serializable]
-	public struct Rate
-	{
-		public string NameRate { get; set; }
-	}
+
+
 	[Serializable]
 	public class Film : IFilm
 	{
+		#region IFilm
+
 		/// <summary>
 		/// Название фильма
 		/// </summary>
 		public string Name { get; set; }
+
 		/// <summary>
 		/// Ссылка на скачивание
 		/// </summary>
@@ -31,11 +26,11 @@ namespace FilmDataBaseForm.Models.Entities
 		/// <summary>
 		/// Если много частей (серий), то хранит ссылки эти на серии.
 		/// </summary>
-		public List<string> ViewedPartsUrl { get; set; }
+		public List<string> ViewedPartsUrl { get; } = new List<string>();
 		/// <summary>
 		/// Оценка фильма
 		/// </summary>
-		public Rate Rate { get; set; }
+		public byte Rate { get; set; }
 		/// <summary>
 		/// Ссылка к картинке
 		/// </summary>
@@ -43,6 +38,7 @@ namespace FilmDataBaseForm.Models.Entities
 		/// <summary>
 		/// Статус просмотра фильма
 		/// </summary>
-		public ViewedStatus ViewedStatus { get; set; }
+		public byte ViewedStatus { get; set; }
+		#endregion
 	}
 }
