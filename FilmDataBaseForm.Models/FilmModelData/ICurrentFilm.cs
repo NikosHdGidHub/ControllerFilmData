@@ -16,5 +16,6 @@ namespace FilmDataBaseForm.Models
 		string GetShortNameFilm();
 		string GetShortNameFilm(int len);
 		int GetRateIndex();
+		int GetStatusIndex();
 	}
 }

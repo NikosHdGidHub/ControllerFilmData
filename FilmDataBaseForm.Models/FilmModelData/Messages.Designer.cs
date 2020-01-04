@@ -79,6 +79,15 @@ namespace FilmDataBaseForm.Models.FilmModelData {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Не смотрел.
+        /// </summary>
+        internal static string Rate0 {
+            get {
+                return ResourceManager.GetString("Rate0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Отвратительный фильм.
         /// </summary>
         internal static string Rate1 {
@@ -138,6 +147,42 @@ namespace FilmDataBaseForm.Models.FilmModelData {
         internal static string RateFilmIsNotCorrect {
             get {
                 return ResourceManager.GetString("RateFilmIsNotCorrect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Просмотрен.
+        /// </summary>
+        internal static string StatusFilm0 {
+            get {
+                return ResourceManager.GetString("StatusFilm0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Смотрю.
+        /// </summary>
+        internal static string StatusFilm1 {
+            get {
+                return ResourceManager.GetString("StatusFilm1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Хочу посмотреть.
+        /// </summary>
+        internal static string StatusFilm2 {
+            get {
+                return ResourceManager.GetString("StatusFilm2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Неверно получены данные о статусе фильма.
+        /// </summary>
+        internal static string StatusFilmIsNotCorrect {
+            get {
+                return ResourceManager.GetString("StatusFilmIsNotCorrect", resourceCulture);
             }
         }
     }

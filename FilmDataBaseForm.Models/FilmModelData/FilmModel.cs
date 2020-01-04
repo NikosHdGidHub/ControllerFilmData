@@ -10,13 +10,22 @@ namespace FilmDataBaseForm.Models
 	{
 		private readonly string[] RATE_LIST_DATA = new[]
 		{
+			Messages.Rate0,
 			Messages.Rate1,
 			Messages.Rate2,
 			Messages.Rate3,
 			Messages.Rate4,
 			Messages.Rate5,
 			Messages.Rate6,
+		}; 
+		private readonly string[] STATUS_LIST_DATA = new[]
+		 {
+			Messages.StatusFilm0,
+			Messages.StatusFilm1,
+			Messages.StatusFilm2
 		};
+
+
 
 		/// <summary>
 		/// Возвращает экземпляр класса FilmModel через интерфейс IFilmModel.
@@ -82,11 +91,20 @@ namespace FilmDataBaseForm.Models
 				_currentFilm.Rate = Convert.ToByte(Array.IndexOf(RATE_LIST_DATA, strRate));
 			}
 		}
+		private void SetStatus(string strStatusIndex)
+		{
+			if (!IsValidStaus(strStatusIndex, out byte result))
+			{
+				throw new FormatException();
+			}
+			_currentFilm.ViewedStatus = result;
+		}
+
 
 
 		//TODO: Реализовать отдачу списка фильмов возможно в виде структуры с ID для возможности сортировки
 		#region IFilmModel
-		public bool IsNameValid(string nameFilm)
+		public bool IsValidName(string nameFilm)
 		{
 			if (string.IsNullOrWhiteSpace(nameFilm))
 			{
@@ -110,13 +128,25 @@ namespace FilmDataBaseForm.Models
 			}
 			if (byte.TryParse(strRate, out byte result))
 			{
-				if (result >= 0 && result < 6)
+				if (result >= 0 && result < RATE_LIST_DATA.Length)
 				{
 					resultIsIndexInList = true;
 					return true;
 				}
 			}			
 			WarningMessageProp?.Invoke(this, Messages.RateFilmIsNotCorrect, nameof(strRate));
+			return false;
+		}
+		public bool IsValidStaus(string strStatusIndex, out byte result)
+		{			
+			if (byte.TryParse(strStatusIndex, out result))
+			{
+				if (result >= 0 && result < STATUS_LIST_DATA.Length)
+				{
+					return true;
+				}
+			}
+			WarningMessageProp?.Invoke(this, Messages.StatusFilmIsNotCorrect, null);
 			return false;
 		}
 
@@ -171,15 +201,19 @@ namespace FilmDataBaseForm.Models
 		{
 			return _currentFilm.Rate;
 		}
-		
-		
+		int ICurrentFilm.GetStatusIndex()
+		{
+			return _currentFilm.ViewedStatus;
+		}
+
+
 
 		string ICurrentFilm.Name
 		{
 			get => _currentFilm.Name;
 			set
 			{
-				if (IsNameValid(value))
+				if (IsValidName(value))
 				{
 					_currentFilm.Name = value;
 				}
@@ -195,12 +229,11 @@ namespace FilmDataBaseForm.Models
 			set => SetRate(value);
 		}
 		string ICurrentFilm.ImageUrl { get => _currentFilm.ImageUrl; set => _currentFilm.ImageUrl = value; }
-		//TODO: Реализовать обработчик статуса
 		string ICurrentFilm.ViewedStatus
 		{
 
-			get => throw new NotImplementedException();
-			set => throw new NotImplementedException();
+			get => STATUS_LIST_DATA[_currentFilm.ViewedStatus];
+			set => SetStatus(value);
 		}
 		#endregion
 	}

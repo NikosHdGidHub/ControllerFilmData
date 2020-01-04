@@ -123,6 +123,9 @@
   <data name="NameFilmIsNull" xml:space="preserve">
     <value>Название фильма не может быть пустым</value>
   </data>
+  <data name="Rate0" xml:space="preserve">
+    <value>Не смотрел</value>
+  </data>
   <data name="Rate1" xml:space="preserve">
     <value>Отвратительный фильм</value>
   </data>
@@ -143,5 +146,17 @@
   </data>
   <data name="RateFilmIsNotCorrect" xml:space="preserve">
     <value>Неверно получены данные о рейтенге фильма</value>
+  </data>
+  <data name="StatusFilm0" xml:space="preserve">
+    <value>Просмотрен</value>
+  </data>
+  <data name="StatusFilm1" xml:space="preserve">
+    <value>Смотрю</value>
+  </data>
+  <data name="StatusFilm2" xml:space="preserve">
+    <value>Хочу посмотреть</value>
+  </data>
+  <data name="StatusFilmIsNotCorrect" xml:space="preserve">
+    <value>Неверно получены данные о статусе фильма</value>
   </data>
 </root>

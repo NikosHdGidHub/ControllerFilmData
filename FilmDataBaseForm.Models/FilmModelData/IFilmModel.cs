@@ -6,8 +6,9 @@ namespace FilmDataBaseForm.Models
 	public interface IFilmModel
 	{
 		ICurrentFilm this[int index] { get; }
-		bool IsNameValid(string nameFilm);
+		bool IsValidName(string nameFilm);
 		bool IsValidRate(string strRate, out bool? resultIsIndexInList);
+		bool IsValidStaus(string strStatusIndex, out byte result);
 		int Count { get; }
 		int Index { get; }
 		void AddFilm();

@@ -73,8 +73,8 @@ namespace FilmDataBaseForm.Models.Tests
 		public void IsNameValidTest()
 		{
 			var filmModel = GetFilmModel();
-			Assert.IsTrue(filmModel.IsNameValid("123"));
-			Assert.IsFalse(filmModel.IsNameValid(null));
+			Assert.IsTrue(filmModel.IsValidName("123"));
+			Assert.IsFalse(filmModel.IsValidName(null));
 		}
 
 		[TestMethod()]
@@ -86,7 +86,7 @@ namespace FilmDataBaseForm.Models.Tests
 			Assert.IsTrue(res1 && out1 == true);
 			res1 = filmModel.IsValidRate("blabla", out out1); 
 			Assert.IsTrue(!res1 && out1 == null);
-			res1 = filmModel.IsValidRate("6", out out1);
+			res1 = filmModel.IsValidRate("88", out out1);
 			Assert.IsTrue(!res1 && out1 == null); 
 			res1 = filmModel.IsValidRate("Один из лучших самых фильмов...", out out1);
 			Assert.IsTrue(res1 && out1 == false);
@@ -100,10 +100,26 @@ namespace FilmDataBaseForm.Models.Tests
 			film.Rate = strRate_6;
 
 			Assert.AreEqual(strRate_6, film.Rate);
-			Assert.AreEqual(5, film.GetRateIndex());
+			Assert.AreEqual(6, film.GetRateIndex());
 
 			film.Rate = "0";
 			Assert.AreEqual(0, film.GetRateIndex());
+		}
+		[TestMethod()]
+		public void SetGetStatusTest()
+		{
+			var filmModel = GetFilmModel();
+			var strRate_0 = "Просмотрен";
+			var film = filmModel.GetFilm();
+			film.ViewedStatus = "0";
+			Assert.IsTrue(filmModel.IsValidStaus("1", out byte someThing));
+			Assert.AreEqual(1, someThing);
+
+			Assert.AreEqual(strRate_0, film.ViewedStatus);
+			Assert.AreEqual(0, film.GetStatusIndex());
+
+			film.ViewedStatus = "2";
+			Assert.AreEqual(2, film.GetStatusIndex());
 		}
 	}
 }
