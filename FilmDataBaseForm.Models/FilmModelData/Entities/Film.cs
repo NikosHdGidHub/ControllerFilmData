@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace FilmDataBaseForm.Models.Entities
 {
-	
-	
+
+
 	[Serializable]
 	public class Film : IFilm
 	{
@@ -14,7 +14,7 @@ namespace FilmDataBaseForm.Models.Entities
 		/// Название фильма
 		/// </summary>
 		public string Name { get; set; }
-		
+
 		/// <summary>
 		/// Ссылка на скачивание
 		/// </summary>

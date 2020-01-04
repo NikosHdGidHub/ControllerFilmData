@@ -119,7 +119,6 @@ namespace FilmDataBaseForm.Models
 
 		#endregion
 
-		//TODO: Реализовать отдачу списка фильмов возможно в виде структуры с ID для возможности сортировки
 		#region IFilmModel
 		public FormatFilmList[] GetFilmList()
 		{
