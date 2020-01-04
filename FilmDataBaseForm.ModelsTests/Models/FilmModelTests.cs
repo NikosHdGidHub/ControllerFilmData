@@ -1,4 +1,5 @@
-﻿using Lib.StreamDataController;
+﻿using FilmDataBaseForm.Models;
+using Lib.StreamDataController;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FilmDataBaseForm.Models.FilmModelData;
 using System;
@@ -84,10 +85,10 @@ namespace FilmDataBaseForm.Models.Tests
 			bool? out1 = null;
 			var res1 = filmModel.IsValidRate("0", out out1);
 			Assert.IsTrue(res1 && out1 == true);
-			res1 = filmModel.IsValidRate("blabla", out out1); 
+			res1 = filmModel.IsValidRate("blabla", out out1);
 			Assert.IsTrue(!res1 && out1 == null);
 			res1 = filmModel.IsValidRate("88", out out1);
-			Assert.IsTrue(!res1 && out1 == null); 
+			Assert.IsTrue(!res1 && out1 == null);
 			res1 = filmModel.IsValidRate("Один из лучших самых фильмов...", out out1);
 			Assert.IsTrue(res1 && out1 == false);
 		}
@@ -120,6 +121,22 @@ namespace FilmDataBaseForm.Models.Tests
 
 			film.ViewedStatus = "2";
 			Assert.AreEqual(2, film.GetStatusIndex());
+		}
+
+		[TestMethod()]
+		public void GetFilmListTest()
+		{
+			var name = "Test 123";
+			var name2 = "12342";
+			var filmModel = GetFilmModel();
+			var film = filmModel.GetFilm();
+			film.Name = name;
+			filmModel.AddFilm();
+			film.Name = name2;
+			var list = filmModel.GetFilmList();
+
+			Assert.AreEqual(name, list[0].NameFilm);
+			Assert.AreEqual(name2, list[1].NameFilm);
 		}
 	}
 }

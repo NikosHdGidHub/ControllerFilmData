@@ -6,6 +6,22 @@ using System.Linq;
 
 namespace FilmDataBaseForm.Models
 {
+	public struct FormatFilmList
+	{
+		public FormatFilmList(int iD, string nameFilm, int rateFilm, bool multiSerial)
+		{
+			ID = iD;
+			NameFilm = nameFilm ?? throw new ArgumentNullException(nameof(nameFilm));
+			RateFilm = rateFilm;
+			MultiSerial = multiSerial;
+		}
+
+		public int ID { get; }
+		public string NameFilm { get; }
+		public int RateFilm { get; }
+		public bool MultiSerial { get; }
+	}
+
 	public class FilmModel : ICurrentFilm, IFilmModel
 	{
 		private readonly string[] RATE_LIST_DATA = new[]
@@ -17,7 +33,7 @@ namespace FilmDataBaseForm.Models
 			Messages.Rate4,
 			Messages.Rate5,
 			Messages.Rate6,
-		}; 
+		};
 		private readonly string[] STATUS_LIST_DATA = new[]
 		 {
 			Messages.StatusFilm0,
@@ -50,6 +66,7 @@ namespace FilmDataBaseForm.Models
 		/// </summary>
 		private IFilm _currentFilm;
 
+		#region prrivateFinctions
 
 		/// <summary>
 		/// Загружает фильм исполняя переданный метод.
@@ -100,10 +117,23 @@ namespace FilmDataBaseForm.Models
 			_currentFilm.ViewedStatus = result;
 		}
 
-
+		#endregion
 
 		//TODO: Реализовать отдачу списка фильмов возможно в виде структуры с ID для возможности сортировки
 		#region IFilmModel
+		public FormatFilmList[] GetFilmList()
+		{
+			var len = _films.Count;
+			var filmList = new FormatFilmList[len];
+			for (int i = 0; i < len; i++)
+			{
+				var film = _films[i];
+				var FormatFilm = new FormatFilmList(i, film.Name, film.Rate, (film.ViewedPartsUrl.Count > 0) ? true : false);
+				filmList[i] = FormatFilm;
+			}
+			return filmList;
+		}
+
 		public bool IsValidName(string nameFilm)
 		{
 			if (string.IsNullOrWhiteSpace(nameFilm))
@@ -133,12 +163,12 @@ namespace FilmDataBaseForm.Models
 					resultIsIndexInList = true;
 					return true;
 				}
-			}			
+			}
 			WarningMessageProp?.Invoke(this, Messages.RateFilmIsNotCorrect, nameof(strRate));
 			return false;
 		}
 		public bool IsValidStaus(string strStatusIndex, out byte result)
-		{			
+		{
 			if (byte.TryParse(strStatusIndex, out result))
 			{
 				if (result >= 0 && result < STATUS_LIST_DATA.Length)
@@ -180,8 +210,6 @@ namespace FilmDataBaseForm.Models
 
 		#endregion
 
-
-		//TODO: Проверить входящие данные
 		#region ICurrentFilm
 		string ICurrentFilm.GetShortNameFilm()
 		{
