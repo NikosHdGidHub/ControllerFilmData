@@ -61,6 +61,6 @@ namespace FilmDataBaseForm.Models
 		/// <summary>
 		/// Вызывается как предупреждение об некорректном вводе.
 		/// </summary>
-		event WarningMessageProp WarningMessageProp;
+		event WarningMessageProp WarningMessageProp;		
 	}
 }

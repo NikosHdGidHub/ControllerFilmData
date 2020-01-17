@@ -8,18 +8,44 @@ namespace FilmDataBaseForm.Models
 {
 	public struct FormatFilmList
 	{
-		public FormatFilmList(int iD, string nameFilm, int rateFilm, bool multiSerial)
+		public FormatFilmList(int iD, string nameFilm, int rateFilm, string textRateFilm, bool multiSerial)
 		{
 			ID = iD;
 			NameFilm = nameFilm ?? throw new ArgumentNullException(nameof(nameFilm));
 			RateFilm = rateFilm;
 			MultiSerial = multiSerial;
+			TextRateFilm = textRateFilm ?? throw new ArgumentNullException(nameof(textRateFilm));
 		}
 
 		public int ID { get; }
 		public string NameFilm { get; }
+		public string TextRateFilm { get; }
 		public int RateFilm { get; }
 		public bool MultiSerial { get; }
+
+		public override bool Equals(object obj)
+		{
+			if (obj is FormatFilmList list)
+			{
+				return (list.ID == ID);
+			}
+			else { return false; }
+		}
+
+		public override int GetHashCode()
+		{
+			return ID;
+		}
+
+		public static bool operator ==(FormatFilmList left, FormatFilmList right)
+		{
+			return left.Equals(right);
+		}
+
+		public static bool operator !=(FormatFilmList left, FormatFilmList right)
+		{
+			return !(left == right);
+		}		
 	}
 
 	public class FilmModel : ICurrentFilm, IFilmModel
@@ -66,7 +92,7 @@ namespace FilmDataBaseForm.Models
 		/// </summary>
 		private IFilm _currentFilm;
 
-		#region prrivateFinctions
+		#region privateFunctions
 
 		/// <summary>
 		/// Загружает фильм исполняя переданный метод.
@@ -127,7 +153,15 @@ namespace FilmDataBaseForm.Models
 			for (int i = 0; i < len; i++)
 			{
 				var film = _films[i];
-				var FormatFilm = new FormatFilmList(i, film.Name, film.Rate, (film.ViewedPartsUrl.Count > 0) ? true : false);
+				FormatFilmList FormatFilm = new FormatFilmList(
+					iD: i,
+					nameFilm: film.Name,
+					rateFilm: film.Rate,
+					textRateFilm: RATE_LIST_DATA[film.Rate],
+					multiSerial: film.ViewedPartsUrl.Count > 0
+					); 
+
+
 				filmList[i] = FormatFilm;
 			}
 			return filmList;
@@ -232,7 +266,6 @@ namespace FilmDataBaseForm.Models
 		{
 			return _currentFilm.ViewedStatus;
 		}
-
 
 
 		string ICurrentFilm.Name
