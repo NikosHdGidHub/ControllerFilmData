@@ -54,5 +54,6 @@ namespace FilmDataBaseForm.Models
 		/// </summary>
 		/// <returns>Статус.</returns>
 		int GetStatusIndex();
+		 
 	}
 }
